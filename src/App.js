@@ -6,21 +6,21 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <form className='form-group'>
-        <label htmlFor='ticket'>Ticket Name</label>
-        <input id='ticket' type='text'/>
+      <form data-testid='form' className='form-group'>
+        <label htmlFor='ticket'>Ticket Name:</label>
+        <input data-testid='ticket-input' id='ticket' type='text'/>
 
-        <label htmlFor='description'>Description</label>
-        <input id='description'/>
+        <label htmlFor='description'>Description:</label>
+        <input data-testid='description-input' id='description'/>
 
-        <label htmlFor='Date'>Date</label>
-        <input id='date' type='text'/>
+        <label htmlFor='Date'>Date:</label>
+        <input data-testid='date-input' id='date' type='text'/>
 
-        <label htmlFor='startTime'>Start Time</label>
-        <input id='startTime' type='text'/>
+        <label htmlFor='startTime'>Start Time:</label>
+        <input data-testid='startTime-input' id='startTime' type='text'/>
 
-        <label htmlFor='endTime'>End Time</label>
-        <input id='endTime' type='text'/>
+        <label htmlFor='endTime'>End Time:</label>
+        <input data-testid='endTime-input' id='endTime' type='text'/>
 
         <button>Submit</button>
       </form>
