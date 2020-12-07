@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css';
 /**
  * START HERE
@@ -7,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <form data-testid='form' className='form-group'>
-        <label htmlFor='ticket'>Ticket Name:</label>
+        {/* <label htmlFor='ticket'>Ticket Name:</label>
         <input data-testid='ticket-input' id='ticket' type='text'/>
 
         <label htmlFor='description'>Description:</label>
@@ -20,7 +21,7 @@ function App() {
         <input data-testid='startTime-input' id='startTime' type='text'/>
 
         <label htmlFor='endTime'>End Time:</label>
-        <input data-testid='endTime-input' id='endTime' type='text'/>
+        <input data-testid='endTime-input' id='endTime' type='text'/> */}
 
         <button>Submit</button>
       </form>

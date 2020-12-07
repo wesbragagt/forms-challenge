@@ -5,8 +5,8 @@ In this challenge I would like for you to build a form that is to be used by a f
 - Ticket Name (max 10 characters, alphanumeric characters and -) example APP-120
 - Description (max 100 characters, alphanumeric characters and -) description of the work.
 - Date (10 characters) MM/DD/YYYY
-- Start Time (7 characters) 10:00 or 10:00am
-- End Time (7 characters) 13:15 or 1:15pm
+- Start Time (7 characters) 10:00am
+- End Time (7 characters) 1:15pm
 
 The form should contain validation for each writeable field and it should output a JSON object with the final values( you can choose where to output the values, another UI component, console.log, alert, JSON.stringify(output)...).
 
