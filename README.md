@@ -12,10 +12,10 @@ The form should contain validation for each writeable field and it should output
 
 ***Bonus points***
 
-- Calculate Total time between End Time and Start Time worked on the ticket and display it in this format `1 hour and 15 minutes` 
 - Well written comments
 - Styling the form ( Show us some css magic :smiley:) 
 - React hooks :rocket:
+- Calculate Total time between End Time and Start Time worked on the ticket and display it in this format `1 hour and 15 minutes` 
 
 # Getting Started with Create React App
 
