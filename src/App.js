@@ -1,30 +1,75 @@
 import React from 'react'
 import './App.css';
-/**
- * START HERE
- * Good luck!
- */
+
+// UI COMPONENTS
+import { Button, Container, TextField, Typography } from '@material-ui/core';
+
+
 function App() {
+
+  const [ticketName, setTicketName] = React.useState('');
+  const [description, setDescription] = React.useState('');
+
+  const handleTicketNameChange = (event) => {
+    setTicketName(event.target.value);
+  };
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
   return (
     <div className="App">
-      <form data-testid='form' className='form-group'>
-        {/* <label htmlFor='ticket'>Ticket Name:</label>
-        <input data-testid='ticket-input' id='ticket' type='text'/>
+      <Container fixed>
+        <form data-testid='form' className='form-group'>
 
-        <label htmlFor='description'>Description:</label>
-        <input data-testid='description-input' id='description'/>
+          <Typography variant="h2" gutterBottom>
+            Ticket Logger
+          </Typography>
 
-        <label htmlFor='Date'>Date:</label>
-        <input data-testid='date-input' id='date' type='text'/>
+          <div mb={4}>
+            <TextField
+              data-testid='ticket-input'
+              id='ticket'
+              label="Ticket Name:"
+              placeholder=""
+              helperText="Full width!"
+              fullWidth
+              value={ticketName}
+              onChange={handleTicketNameChange}
+            />
 
-        <label htmlFor='startTime'>Start Time:</label>
-        <input data-testid='startTime-input' id='startTime' type='text'/>
+            <TextField
+              data-testid='description-input'
+              id='description'
+              label="Description:"
+              multiline
+              fullWidth
+              rowsMax={4}
+              value={description}
+              onChange={handleDescriptionChange}
+            />
+          </div>
 
-        <label htmlFor='endTime'>End Time:</label>
-        <input data-testid='endTime-input' id='endTime' type='text'/> */}
+          {/* <label htmlFor='ticket'>Ticket Name:</label>
+      <input data-testid='ticket-input' id='ticket' type='text'/>
 
-        <button>Submit</button>
-      </form>
+      <label htmlFor='description'>Description:</label>
+      <input data-testid='description-input' id='description'/>
+
+      <label htmlFor='Date'>Date:</label>
+      <input data-testid='date-input' id='date' type='text'/>
+
+      <label htmlFor='startTime'>Start Time:</label>
+      <input data-testid='startTime-input' id='startTime' type='text'/>
+
+      <label htmlFor='endTime'>End Time:</label>
+      <input data-testid='endTime-input' id='endTime' type='text'/> */}
+          <Button variant="contained" color="primary">
+            Primary
+          </Button>
+        </form>
+      </Container>
+
     </div>
   );
 }

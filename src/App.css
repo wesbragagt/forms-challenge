@@ -5,5 +5,7 @@
 }
 
 .form-group{
-  padding: 1rem;
+  padding: 3rem;
+  background-color: white;
+  color: black;
 }
