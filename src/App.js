@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <form data-testid='form' className='form-group'>
+        <h1>Ticket</h1>
         {/* <label htmlFor='ticket'>Ticket Name:</label>
         <input data-testid='ticket-input' id='ticket' type='text'/>
 
