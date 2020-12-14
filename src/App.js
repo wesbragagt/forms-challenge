@@ -4,6 +4,8 @@ import './App.css';
  * START HERE
  * Good luck!
  */
+
+
 function App() {
   return (
     <div className="App">
@@ -19,7 +21,7 @@ function App() {
 
         {/* Description input field */}
         <label htmlFor='description'>Description:</label>
-        <input data-testid='description-input' id='description'/>
+        <input data-testid='description-input' id='description' type='text'/>
 
         {/* Date input field */}
         <label htmlFor='Date'>Date:</label>
