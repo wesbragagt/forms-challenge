@@ -1,0 +1,70 @@
+#form-error {
+  background: rgb(199, 97, 97);
+  color: white;
+  margin-top: 2rem;
+  width: 80%;
+  max-width: 600px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#form-success {
+  background: rgb(77, 161, 77);
+  color: white;
+  margin-top: 2rem;
+  width: 80%;
+  max-width: 600px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.ticket-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid rgb(109, 113, 136);
+  border-radius: 10px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 80%;
+  max-width: 600px;
+}
+
+.ticket-form > label {
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.ticket-form > input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+.ticket-form-submit-button {
+  padding: 1rem;
+  background-color: rgb(43, 57, 144);
+  margin: 1rem auto 0 auto;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  padding: 1rem 4rem;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+}
+
+.ticket-form-submit-button:hover {
+  background-color: rgb(29, 39, 100);
+}
+
+.ticket-form-submit-button:active {
+  transform: scale(0.98);
+}

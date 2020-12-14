@@ -1,9 +1,13 @@
 .App {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
-  color: white;
+  color: black;
 }
 
-.form-group{
-  padding: 1rem;
+.form-group {
+  padding: 2rem;
+}
+
+.hidden {
+  display: none;
 }
