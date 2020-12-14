@@ -216,7 +216,7 @@ const TicketForm = () => {
     } else {
       const id = uuidv4();
       let ticket = {
-        id,
+        id: id,
         ticketName,
         description,
         date,

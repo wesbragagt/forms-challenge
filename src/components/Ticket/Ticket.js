@@ -1,4 +1,5 @@
 import React from "react";
+import "./Ticket.css";
 
 const Ticket = ({ data }) => {
   const getTimeString = () => {
@@ -14,12 +15,20 @@ const Ticket = ({ data }) => {
   };
 
   return (
-    <div class="ticket">
-      <p>Name: {data.ticketName}</p>
-      <p>Description: {data.description}</p>
-      <p>Start time: {data.startTime}</p>
-      <p>End time: {data.endTime}</p>
-      <p>Time worked: {getTimeString()}</p>
+    <div className="ticket">
+      <h3 className="ticket-title">{data.ticketName}</h3>
+      <p>
+        <b>Description:</b> {data.description}
+      </p>
+      <p>
+        <b>Start time:</b> {data.startTime}
+      </p>
+      <p>
+        <b>End time:</b> {data.endTime}
+      </p>
+      <p>
+        <b>Time worked:</b> {getTimeString()}
+      </p>
     </div>
   );
 };
