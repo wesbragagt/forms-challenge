@@ -24,19 +24,19 @@ export default function SubmissionDialog(props) {
               <strong>Ticket Name: </strong>{props.fullTicket.ticketName}
             </p>
             <p>
-              <strong>Ticket Name: </strong>{props.fullTicket.description}
+              <strong>Description: </strong>{props.fullTicket.description}
             </p>
             <p>
-              <strong>Ticket Name: </strong>{props.fullTicket.date}
+              <strong>Date: </strong>{props.fullTicket.date}
             </p>
             <p>
-              <strong>Ticket Name: </strong>{props.fullTicket.startTime}
+              <strong>Start Time: </strong>{props.fullTicket.startTime}
             </p>
             <p>
-              <strong>Ticket Name: </strong>{props.fullTicket.endTime}
+              <strong>End Time: </strong>{props.fullTicket.endTime}
             </p>
             <p>
-              <strong>Ticket Name: </strong>{props.fullTicket.duration}
+              <strong>Duration: </strong>{props.fullTicket.duration}
             </p>
           </DialogContentText>
         </DialogContent>
