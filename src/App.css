@@ -9,3 +9,10 @@
   background-color: white;
   color: black;
 }
+
+.duration {
+	padding-top: 1rem
+}
+.duration-label {
+	margin-bottom: .5rem
+}

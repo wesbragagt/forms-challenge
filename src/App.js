@@ -4,12 +4,21 @@ import MomentUtils from '@date-io/moment';
 import moment from 'moment'
 
 // UI COMPONENTS
-import { Button, Container, TextField, Typography, Grid } from '@material-ui/core';
+import {
+  Button,
+  Container,
+  TextField,
+  Typography,
+  Grid,
+  InputLabel
+} from '@material-ui/core';
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { Alert } from '@material-ui/lab';
+import SubmissionDialog from './components/SubmissionDialog'
 
 function App() {
 
@@ -23,34 +32,46 @@ function App() {
   const [date, setDate] = React.useState(new Date());
   const [startTime, setStartTime] = React.useState(new Date());
   const [endTime, setEndTime] = React.useState(new Date());
+  const [isFormValid, setFormValid] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [fullTicket, setFullTicket] = React.useState({});
 
   // Form Field change handlers
   const handleTicketNameChange = (event) => {
+    const inputVal = event.target.value;
     // Validate field input, set error state and error message
-    if (!event.target.value.match(/^[0-9a-z-]+$/)) {
-      setTicketNameError(true)
-      setTicketNameErrorText("(Max 10 characters, alphanumeric characters and -) example APP-120")
-    } else {
+    if (inputVal.match(/^[0-9a-zA-Z-]+$/) && (inputVal.length <= 10)) {
       setTicketNameError(false)
       setTicketNameErrorText('')
+      // Set field value
+      setTicketName(inputVal);
     }
-
-    // Set field value
-    setTicketName(event.target.value);
+    else {
+      setTicketNameError(true)
+      setTicketNameErrorText("(Max 10 characters, alphanumeric characters and -)")
+      if (inputVal.length === 0) {
+        setTicketName(inputVal);
+      }
+    }
   };
 
   const handleDescriptionChange = (event) => {
+    const inputVal = event.target.value;
     // Validate field input, set error state and error message
-    if (!event.target.value.match(/^[0-9a-z-]+$/)) {
-      setDescriptionError(true)
-      setDescriptionErrorText("(Max 10 characters, alphanumeric characters and -) example APP-120")
-    } else {
+    if (inputVal.match(/^[0-9a-zA-Z-,. ]+$/) && (inputVal.length <= 100)) {
       setDescriptionError(false)
       setDescriptionErrorText('')
+      // Set field value
+      setDescription(inputVal);
+    }
+    else {
+      setDescriptionError(true)
+      setDescriptionErrorText("(Max 100 characters, alphanumeric characters and -)")
+      if (inputVal.length === 0) {
+        setDescription(inputVal);
+      }
     }
 
-    // Set field value
-    setDescription(event.target.value);
   };
 
   const handleDateChange = (date) => {
@@ -67,15 +88,63 @@ function App() {
 
   // Form Submit Handler
   const handleSubmit = () => {
-    const results = {
-      TicketName: ticketName,
-      Description: description,
-      Date: moment(date).format("MM/DD/YYYY"),
-      StartTime: moment(startTime).format("hh:mmA"),
-      EndTime: moment(endTime).format("hh:mmA")
+    // Check if any component is in an error state
+    if (!ticketNameError &&
+      !descriptionError &&
+      ticketName.length &&
+      description.length &&
+      moment(date).isValid() &&
+      moment(startTime).isValid() &&
+      moment(endTime).isValid()) {
+
+      // handle output
+      const results = {
+        ticketName: ticketName,
+        description: description,
+        date: moment(date).format("MM/DD/YYYY"),
+        startTime: moment(startTime).format("hh:mmA"),
+        endTime: moment(endTime).format("hh:mmA"),
+        duration: `${moment(endTime).diff(moment(startTime), 'hours')} hours and ${moment(endTime).diff(moment(startTime), 'minutes') % 60} minutes`
+      }
+      setFullTicket(results)
+      setFormValid(true)
+      showSubmissionDialog()
+      console.log(fullTicket)
+    } else {
+      setFormValid(false)
+      console.log("Fix errors before submitting");
     }
-    console.log(results)
   }
+
+
+  const showSubmissionDialog = () => {
+    setOpen(true);
+  };
+
+  const hideSubmissionDialog = () => {
+    clearForm()
+    setOpen(false);
+  };
+
+  const clearForm = () => {
+    setTicketName('')
+    setTicketNameError(false)
+    setTicketNameErrorText('')
+    setDescription('')
+    setDescriptionError(false)
+    setDescriptionErrorText('')
+    setDate(new Date())
+    setStartTime(new Date())
+    setEndTime(new Date())
+    setFullTicket({})
+  }
+
+  const renderValidationAlert = () => {
+    if (!isFormValid) {
+      return <Alert severity="error">Fix all errors before submitting</Alert>
+    }
+  }
+
 
   return (
     <div className="App">
@@ -86,24 +155,27 @@ function App() {
             Ticket Logger
           </Typography>
 
-          <div>
+          {renderValidationAlert()}
+
+          <Grid>
             <TextField
               margin="normal"
-              data-testid='ticket-input'
               id='ticket'
               label="Ticket Name:"
               placeholder=""
               fullWidth
               value={ticketName}
               onChange={handleTicketNameChange}
-              inputProps={{ maxLength: 10 }}
+              inputProps={{ maxLength: 10, 'data-testid': 'ticket-input' }}
               error={ticketNameError}
               helperText={ticketNameErrorText}
+              required
             />
+          </Grid>
+          <Grid>
 
             <TextField
               margin="normal"
-              data-testid='description-input'
               id='description'
               label="Description:"
               multiline
@@ -111,12 +183,14 @@ function App() {
               rowsMax={4}
               value={description}
               onChange={handleDescriptionChange}
-              inputProps={{ maxLength: 100 }}
+              inputProps={{ maxLength: 100, 'data-testid': 'description-input' }}
+              error={descriptionError}
+              helperText={descriptionErrorText}
+              required
             />
-          </div>
+          </Grid>
 
           <MuiPickersUtilsProvider utils={MomentUtils}>
-
             <Grid container justify="space-between">
               <KeyboardDatePicker
                 margin="normal"
@@ -125,6 +199,7 @@ function App() {
                 format="MM/DD/yyyy"
                 value={date}
                 onChange={handleDateChange}
+                inputProps={{ 'data-testid': 'date-input' }}
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
@@ -132,10 +207,10 @@ function App() {
               <KeyboardTimePicker
                 margin="normal"
                 id="startTime"
-                data-testid='startTime-input'
                 label="Start Time:"
                 value={startTime}
                 onChange={handleStartTimeChange}
+                inputProps={{ 'data-testid': 'startTime-input' }}
                 KeyboardButtonProps={{
                   'aria-label': 'change time',
                 }}
@@ -143,27 +218,38 @@ function App() {
               <KeyboardTimePicker
                 margin="normal"
                 id="endTime"
-                data-testid='endTime-input'
                 label="End Time:"
                 value={endTime}
                 onChange={handleEndTimeChange}
+                inputProps={{ 'data-testid': 'endTime-input' }}
                 KeyboardButtonProps={{
                   'aria-label': 'change time',
                 }}
               />
+              <div className="duration">
+                <InputLabel shrink className="duration-label">Duration:</InputLabel>
+                {`${moment(endTime).diff(moment(startTime), 'hours')} hours and ${moment(endTime).diff(moment(startTime), 'minutes') % 60} minutes`}
+              </div>
             </Grid>
           </MuiPickersUtilsProvider>
-          <Button
-            margin="normal"
-            variant="contained"
-            color="primary"
-            onClick={handleSubmit}
-          >
-            Submit
+
+          <Grid>
+            <Button
+              margin="normal"
+              variant="contained"
+              color="primary"
+              onClick={handleSubmit}
+            >
+              Submit Ticket
           </Button>
+          </Grid>
         </form>
       </Container>
-
+      <SubmissionDialog
+        open={open}
+        fullTicket={fullTicket}
+        handleClose={hideSubmissionDialog}
+      />
     </div>
   );
 }
