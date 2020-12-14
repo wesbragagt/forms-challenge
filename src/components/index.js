@@ -14,7 +14,12 @@ class Form extends Component {
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         const { name, value } = event.target;
-
+        // Validating input
+        if (name === 'ticket') {
+            if (value.ticket.length > 10) {
+                alert('Ticket Name must not exceed 10 characters!')
+            }
+        } 
         // Updating the input's state
         this.setState({
             [name]: value
@@ -26,9 +31,9 @@ class Form extends Component {
         event.preventDefault();
         console.log()
 
-        // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+        // Alert the user their ticket information
         alert(`
-            Ticket ID: ${this.state.ticket}
+            Ticket Name: ${this.state.ticket}
             Description: ${this.state.description}
             Date: ${this.state.Date}
             Start Time: ${this.state.startTime}
@@ -44,11 +49,16 @@ class Form extends Component {
     };
 
     render() {
-        // Notice how each input has a `value`, `name`, and `onChange` prop
         return (
             <div>
+                <h1>
+                    Employee Ticket Form
+                </h1>
+                <h3>
+                    Please fill out the input fields below
+                </h3>
                 <p>
-                    Ticket ID: {this.state.ticket} <br />
+                    Ticket Name: {this.state.ticket} <br />
                     Ticket Description: {this.state.description} <br />
                     Ticket Date: {this.state.Date} <br />
                     Ticket Start Time: {this.state.startTime} <br />
@@ -60,7 +70,7 @@ class Form extends Component {
                         name="ticket"
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="Ticket Name"
+                        placeholder="Ticket Name (Max 10 char.)"
                     />
                     <br />
                     <input
@@ -68,7 +78,7 @@ class Form extends Component {
                         name="description"
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="Description"
+                        placeholder="Description (Max 100 char.)"
                     />
                     <br />
                     <input
@@ -76,7 +86,7 @@ class Form extends Component {
                         name="Date"
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="Date"
+                        placeholder="Date (MM/DD/YYYY)"
                     />
                     <br />
                     <input
@@ -84,7 +94,7 @@ class Form extends Component {
                         name="startTime"
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="Start Time"
+                        placeholder="Start Time (Max 7 char.)"
                     />
                     <br />
                     <input
@@ -92,7 +102,7 @@ class Form extends Component {
                         name="endTime"
                         onChange={this.handleInputChange}
                         type="text"
-                        placeholder="End Time"
+                        placeholder="End Time (Max 7 char.)"
                     />
                     <br />
                     <button onClick={this.handleFormSubmit}>Submit</button>
