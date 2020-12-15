@@ -27,3 +27,9 @@ nav {
 .nav-link-selected {
   text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+}
