@@ -23,3 +23,7 @@ nav {
   color: white;
   text-decoration: none;
 }
+
+.nav-link-selected {
+  text-decoration: underline;
+}
