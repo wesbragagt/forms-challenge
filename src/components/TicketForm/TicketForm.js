@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 const TicketForm = () => {
   const nameCharLimit = 10;
   const descriptionCharLimit = 100;
+  const dateCharLimit = 10;
+  const timeCharLimit = 7;
   const messageDuration = 3000;
 
   const [ticketName, setTicketName] = useState("");
@@ -36,13 +38,11 @@ const TicketForm = () => {
     const updatedTicketName = event.target.value;
     if (updatedTicketName.length <= nameCharLimit) {
       if (!validateTicketName(updatedTicketName)) {
-        event.target.value = ticketName;
         displayError("Only alphanumeric characters and dashes allowed.");
       } else {
         setTicketName(updatedTicketName);
       }
     } else {
-      event.target.value = ticketName;
       displayError("Character limit reached.");
     }
   };
@@ -56,13 +56,11 @@ const TicketForm = () => {
     const updatedDescription = event.target.value;
     if (updatedDescription.length <= descriptionCharLimit) {
       if (!validateDescription(updatedDescription)) {
-        event.target.value = description;
         displayError("Only alphanumeric characters and dashes allowed.");
       } else {
         setDescription(updatedDescription);
       }
     } else {
-      event.target.value = description;
       displayError("Character limit reached.");
     }
   };
@@ -74,45 +72,39 @@ const TicketForm = () => {
 
   const handleDateChange = (event) => {
     const updatedDate = event.target.value;
-    if (updatedDate.length <= 10) {
+    if (updatedDate.length <= dateCharLimit) {
       if (!validateDate(updatedDate)) {
-        event.target.value = date;
         displayError("Invalid date for form MM/DD/YYYY.");
       } else {
         setDate(updatedDate);
       }
     } else {
-      event.target.value = date;
       displayError("Invalid date for form MM/DD/YYYY.");
     }
   };
 
   const handleStartTimeChange = (event) => {
     const updatedTime = event.target.value.toLowerCase();
-    if (updatedTime.length <= 7) {
+    if (updatedTime.length <= timeCharLimit) {
       if (!validateTime(updatedTime)) {
-        event.target.value = startTime;
         displayError("Invalid time for form HH:MMam/pm.");
       } else {
         setStartTime(updatedTime);
       }
     } else {
-      event.target.value = startTime;
       displayError("Invalid time for form HH:MMam/pm.");
     }
   };
 
   const handleEndTimeChange = (event) => {
     const updatedTime = event.target.value.toLowerCase();
-    if (updatedTime.length <= 7) {
+    if (updatedTime.length <= timeCharLimit) {
       if (!validateTime(updatedTime)) {
-        event.target.value = endTime;
         displayError("Invalid time for form HH:MMam/pm.");
       } else {
         setEndTime(updatedTime);
       }
     } else {
-      event.target.value = endTime;
       displayError("Invalid time for form HH:MMam/pm.");
     }
   };
