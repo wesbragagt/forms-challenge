@@ -39,7 +39,12 @@ class Form extends Component {
             if (value.length > 7) {
                 alert('End Time must not exceed 7 characters!')
             }
-        } 
+        }
+        // Separte validation for alphanumeric character in order to prompt separate alert 
+        if (name === 'ticket' || name === 'description') {
+            if (value !== "^[a-zA-Z0-9_]*$")
+                alert('Must use alphanumeric characters!')
+        }
         // Updating the input's state
         this.setState({
             [name]: value
