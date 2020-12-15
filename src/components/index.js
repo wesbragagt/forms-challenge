@@ -16,7 +16,7 @@ class Form extends Component {
         const { name, value } = event.target;
         // Validating input
         if (name === 'ticket') {
-            if (value.ticket.length > 10) {
+            if (value.length > 10) {
                 alert('Ticket Name must not exceed 10 characters!')
             }
         } 
