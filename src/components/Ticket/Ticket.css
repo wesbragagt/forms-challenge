@@ -2,11 +2,15 @@
   border: 3px solid rgb(109, 113, 136);
   border-radius: 10px;
   margin: 2rem;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 2rem 2rem 2rem 2rem;
   width: 80%;
   max-width: 600px;
 }
 
 .ticket-title {
   text-align: center;
+}
+
+.ticket-item {
+  margin: 1rem 0 0 0;
 }

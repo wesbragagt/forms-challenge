@@ -17,16 +17,19 @@ const Ticket = ({ data }) => {
   return (
     <div className="ticket">
       <h3 className="ticket-title">{data.ticketName}</h3>
-      <p>
+      <p className="ticket-item">
         <b>Description:</b> {data.description}
       </p>
-      <p>
+      <p className="ticket-item">
+        <b>Date:</b> {data.date}
+      </p>
+      <p className="ticket-item">
         <b>Start time:</b> {data.startTime}
       </p>
-      <p>
+      <p className="ticket-item">
         <b>End time:</b> {data.endTime}
       </p>
-      <p>
+      <p className="ticket-item">
         <b>Time worked:</b> {getTimeString()}
       </p>
     </div>
