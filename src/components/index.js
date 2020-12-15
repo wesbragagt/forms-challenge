@@ -19,6 +19,26 @@ class Form extends Component {
             if (value.length > 10) {
                 alert('Ticket Name must not exceed 10 characters!')
             }
+        }
+        if (name === 'description') {
+            if (value.length > 100) {
+                alert('Description must not exceed 100 characters!')
+            }
+        }
+        if (name === 'Date') {
+            if (value.length > 10) {
+                alert('Date must not exceed 10 characters!')
+            }
+        } 
+        if (name === 'startTime') {
+            if (value.length > 7) {
+                alert('Start Time must not exceed 7 characters!')
+            }
+        } 
+        if (name === 'endTime') {
+            if (value.length > 7) {
+                alert('End Time must not exceed 7 characters!')
+            }
         } 
         // Updating the input's state
         this.setState({
