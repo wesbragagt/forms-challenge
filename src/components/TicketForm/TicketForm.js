@@ -124,7 +124,7 @@ const TicketForm = () => {
       case 0:
         return true;
       case 1:
-        return /^[0-2]$/.test(newChar);
+        return /^[01]$/.test(newChar);
       case 2:
         month = parseInt(updatedDate);
         return month >= 1 && month <= 12;
